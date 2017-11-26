@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@mipmap/otherbg">
+
+    <LinearLayout
+        android:id="@+id/search_lay"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="top"
+        android:background="@color/head"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/citychoose"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btncity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:text="广州 >"
+                android:textSize="20dp"
+                android:textColor="@color/text"
+                android:background="@color/head"/>
+
+        </LinearLayout>
+
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:id="@+id/search_view"
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center_vertical"
+            android:iconifiedByDefault="false"
+            android:queryHint="电影名称/类型/评分"
+            android:background="@drawable/search_shape">
+        </SearchView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="7" />
+    </LinearLayout>
+
+
+
+    <Refresh.CircleRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_lay"
+        android:layout_marginTop="5dp"
+        app:AniBackColor="@color/head"
+        app:AniForeColor="#66a3ec"
+        app:CircleSmaller="6"
+        android:id="@+id/refresh_layout">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recylerview"
+            android:padding="13dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </Refresh.CircleRefreshLayout>
+
+
+</RelativeLayout>

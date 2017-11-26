@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@mipmap/otherbg">
+
+    <LinearLayout
+        android:id="@+id/customer_top"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@color/head">
+
+        <ImageButton
+            android:id="@+id/ibuserpic"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/usericon"/>
+
+        <TextView
+            android:id="@+id/tvshowusername"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="80dp"
+            android:text="点击头像登录"
+            android:textSize="14sp"
+            android:textColor="@color/text"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_col"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/customer_top"
+        android:layout_marginTop="30dp"
+        android:background="@color/head">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:src="@mipmap/collection"/>
+
+        <Button
+            android:id="@+id/btncollections"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="我收藏的电影"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:background="@drawable/customer_but_attr"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/lay_col"
+        android:background="@color/line"/>
+
+    <LinearLayout
+        android:id="@+id/lay_marked"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/lay_col"
+        android:background="@color/head">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:src="@mipmap/havemarked"/>
+
+        <Button
+            android:id="@+id/btnhavemarked"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="我已评分的电影"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:background="@drawable/customer_but_attr"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/lay_marked"
+        android:background="@color/line"/>
+
+    <LinearLayout
+        android:id="@+id/lay_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/lay_marked"
+        android:background="@color/head">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:src="@mipmap/recommend"/>
+
+        <Button
+            android:id="@+id/btnrecommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="我的个性推荐"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:background="@drawable/customer_but_attr"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/lay_recommend"
+        android:background="@color/line"/>
+
+    <LinearLayout
+        android:id="@+id/lay_setting"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/lay_recommend"
+        android:background="@color/head">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="25dp"
+            android:src="@mipmap/setting"/>
+
+        <Button
+            android:id="@+id/btnsettings"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:text="设置"
+            android:textColor="@color/text"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:background="@drawable/customer_but_attr"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/lay_setting"
+        android:background="@color/line"/>
+
+
+</RelativeLayout>

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lyz.uniquefilm.SignupActivity"
+    android:gravity="center_vertical"
+    android:weightSum="10"
+    android:background="@mipmap/signupbg">
+
+    <TableRow
+        android:id="@+id/tablerow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:layout_weight="0.5"
+        >
+
+        <TextView
+            android:layout_weight="2"/>
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="250dp"
+            android:textSize="18sp"
+
+            android:hint="user_name"
+            android:textColorHint="#A9A9A9"
+            android:textColor="#4F4F4F"
+            android:background="@drawable/line"
+            />
+
+        *android:layout_weight=""/>
+        <TextView
+            android:layout_weight="2"/>
+
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tablerow2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="4">
+        <TextView
+            android:layout_weight="2"/>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4F4F4F"
+            android:textSize="18sp"
+            android:hint="password"
+            android:textColorHint="#A9A9A9"
+            android:inputType="textPassword"
+            android:background="@drawable/line"/>
+        <TextView />
+
+    </TableRow>
+    <TableRow
+        android:layout_weight="1">
+        <TextView />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tablerow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:layout_weight="1"
+        >
+
+        <TextView
+            android:layout_weight="1"/>
+
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:gravity="center"
+            android:background="@drawable/shape"
+            android:text="login"
+            android:onClick="myClick"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:layout_weight="1"/>
+
+
+
+    </TableRow>
+    <TableRow>
+        <TextView />
+    </TableRow>
+    <TableRow
+        android:weightSum="4">
+
+        <TextView
+            android:layout_weight="2"/>
+        <TextView
+            android:id="@+id/textview_forget"
+            android:layout_gravity="center"
+            android:text="忘记密码？"
+            android:textColor="#9fb1ef"
+            android:linksClickable="true"
+            android:onClick="TextClick"/>
+
+    </TableRow>
+
+    <TableRow>
+        <TextView />
+    </TableRow>
+
+    <TableRow
+        android:weightSum="4">
+        <TextView
+            android:layout_weight="2"/>
+        <TextView
+            android:text="还未注册？"
+            android:layout_gravity="center"
+            android:linksClickable="true"
+            android:onClick="TextClick"
+            android:textColor="#9fb1ef"/>
+    </TableRow>>>
+
+</TableLayout>
