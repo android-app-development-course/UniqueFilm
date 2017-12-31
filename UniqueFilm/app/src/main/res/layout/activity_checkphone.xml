@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/xingkong"
+    android:weightSum="8"
+    android:gravity="center_vertical"
+    tools:context="com.example.lyz.uniquefilm.CheckphoneActivity">
+
+    <TableRow
+        android:id="@+id/tablerow1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="6"
+        android:layout_weight="1">
+
+
+        <EditText
+            android:layout_weight="2"
+            android:id="@+id/et_checknum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:minWidth="200dp"
+            android:textSize="18sp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/line"
+            android:hint="输入获取的验证妈"
+            android:textColorHint="#A9A9A9"
+            android:textColor="#4F4F4F"
+            />
+
+
+        <LinearLayout
+            android:layout_weight="4"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content">
+            <TextView
+                android:id="@+id/tv_lefttime"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textColor="#b7b6b6"
+                android:layout_marginLeft="15dp"
+                android:gravity="center_vertical"
+                />
+
+        </LinearLayout>
+
+
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tablerow3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="4">
+
+            <Button
+                android:id="@+id/btn_sure"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:textColor="#FFFFFF"
+                android:layout_margin="20dp"
+                android:background="@drawable/shape"
+                android:text="确定"/>
+
+            <Button
+                android:id="@+id/btn_tryagain"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:textColor="#FFFFFF"
+                android:layout_weight="2"
+                android:layout_margin="20dp"
+                android:background="@drawable/shape"
+                android:text="重新获取"/>
+
+        </LinearLayout>
+
+
+
+    </TableRow>
+
+
+
+</TableLayout>

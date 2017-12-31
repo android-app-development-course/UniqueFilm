@@ -17,8 +17,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/bottommenu"
-            android:clickable="false"
-            android:src="@mipmap/home_y"/>
+            android:src="@mipmap/home_w"
+            android:layout_marginBottom="6dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,14 +38,37 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/bottommenu"
-            android:clickable="false"
-            android:src="@mipmap/sorting_y"/>
+            android:src="@mipmap/sorting_w"
+            android:layout_marginBottom="6dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="排行榜"
             android:textColor="@drawable/tab_menu_text"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_tab_search"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/id_tab_search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/bottommenu"
+            android:src="@mipmap/search_w"
+            android:layout_marginBottom="6dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索"
+            android:textColor="@drawable/tab_menu_text"/>
+    </LinearLayout>
+
+
 
     <LinearLayout
         android:id="@+id/id_tab_customer"
@@ -59,13 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/bottommenu"
-            android:clickable="false"
-            android:src="@mipmap/customer_y"/>
+            android:src="@mipmap/customer_w"
+            android:layout_marginBottom="6dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="个人"
             android:textColor="@drawable/tab_menu_text"/>
     </LinearLayout>
+
 
 </LinearLayout>

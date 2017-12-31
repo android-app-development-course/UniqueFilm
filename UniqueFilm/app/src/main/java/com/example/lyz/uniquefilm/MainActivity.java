@@ -1,6 +1,8 @@
 package com.example.lyz.uniquefilm;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -18,12 +20,14 @@ import android.widget.LinearLayout;
 import com.example.lyz.uniquefilm.fragments.CustomerFragment;
 import com.example.lyz.uniquefilm.fragments.HomeFragment;
 import com.example.lyz.uniquefilm.fragments.MyFragmentAdapter;
+import com.example.lyz.uniquefilm.fragments.SearchFragment;
 import com.example.lyz.uniquefilm.fragments.SortFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Animator.LoadingDialog;
+import cn.bmob.v3.Bmob;
 
 public class MainActivity extends AppCompatActivity implements android.view.View.OnClickListener{
 
@@ -34,10 +38,12 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     private LinearLayout mTabhome;
     private LinearLayout mTabsorting;
     private LinearLayout mTabcustomer;
+    private LinearLayout mTabsearch;
 
     private ImageButton mhomeImg;
     private ImageButton msortingImg;
     private ImageButton mcustomerImg;
+    private ImageButton msearchImg;
 
     LoadingDialog loading;
 
@@ -47,6 +53,13 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bmob.initialize(this,"486138ea611fa2a2a8728ef9f8f836b5");
+        SharedPreferences myPreference=getSharedPreferences("myPreference", Context.MODE_PRIVATE);
+        boolean iscontain=myPreference.contains("userstate");
+        if(!iscontain){
+            SharedPreferences.Editor editor=myPreference.edit();
+            editor.putBoolean("userstate",false);
+        }
         setContentView(R.layout.activity_main);
         loading=new LoadingDialog(this,R.drawable.img_loading2);
         initView();
@@ -58,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         mTabhome.setOnClickListener(this);
         mTabsorting.setOnClickListener(this);
         mTabcustomer.setOnClickListener(this);
+        mTabsearch.setOnClickListener(this);
         mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -78,6 +92,10 @@ public class MainActivity extends AppCompatActivity implements android.view.View
                         break;
                     case 2:
                         resetImg();
+                        msearchImg.setImageResource(R.mipmap.search_w);
+                        break;
+                    case 3:
+                        resetImg();
                         mcustomerImg.setImageResource(R.mipmap.customer_w);
                         break;
                     default:
@@ -97,10 +115,12 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         mTabhome=(LinearLayout)findViewById(R.id.id_tab_home);
         mTabsorting=(LinearLayout)findViewById(R.id.id_tab_sorting);
         mTabcustomer=(LinearLayout)findViewById(R.id.id_tab_customer);
+        mTabsearch=(LinearLayout)findViewById(R.id.id_tab_search);
 
         mhomeImg=(ImageButton)findViewById(R.id.id_tab_home_img);
         msortingImg=(ImageButton)findViewById(R.id.id_tab_sorting_img);
         mcustomerImg=(ImageButton)findViewById(R.id.id_tab_customer_img);
+        msearchImg=(ImageButton)findViewById(R.id.id_tab_search_img);
     }
 
     private void initViewPage(){
@@ -112,7 +132,9 @@ public class MainActivity extends AppCompatActivity implements android.view.View
 
         mViews.add(new HomeFragment());
         mViews.add(new SortFragment());
+        mViews.add(new SearchFragment());
         mViews.add(new CustomerFragment());
+
 
         MyFragmentAdapter adapter=new MyFragmentAdapter(getSupportFragmentManager(),mViews);
         mViewPager.setAdapter(adapter);
@@ -164,8 +186,13 @@ public class MainActivity extends AppCompatActivity implements android.view.View
                 resetImg();
                 msortingImg.setImageResource(R.mipmap.sorting_w);
                 break;
-            case R.id.id_tab_customer:
+            case R.id.id_tab_search:
                 mViewPager.setCurrentItem(2);
+                resetImg();
+                msearchImg.setImageResource(R.mipmap.search_w);
+                break;
+            case R.id.id_tab_customer:
+                mViewPager.setCurrentItem(3);
                 resetImg();
                 mcustomerImg.setImageResource(R.mipmap.customer_w);
                 break;
@@ -178,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         mhomeImg.setImageResource(R.mipmap.home_y);
         msortingImg.setImageResource(R.mipmap.sorting_y);
         mcustomerImg.setImageResource(R.mipmap.customer_y);
+        msearchImg.setImageResource(R.mipmap.search_y);
     }
 
     @Override

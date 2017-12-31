@@ -4,13 +4,21 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.lyz.uniquefilm.Adapter.UFRvAdapter;
+import com.example.lyz.uniquefilm.Analysis.Boxjson;
+import com.example.lyz.uniquefilm.Information.BoxInfo;
 import com.example.lyz.uniquefilm.R;
 import com.example.lyz.uniquefilm.UsercolActivity;
+
+import java.util.ArrayList;
 
 import List.ViewHolderAdapter;
 import Refresh.CircleRefreshLayout;
@@ -22,9 +30,11 @@ import Refresh.CircleRefreshLayout;
 public class SortFragment extends Fragment {
 
 
-
-    private ListView mlvcol;
-    private String[] names={"1","2","3","4","5","6","7","8","9","10","11","12","13"};
+    private String url="https://box.maoyan.com/promovie/api/box/second.json";
+    private RecyclerView mRecyclerView;
+    private ArrayList<BoxInfo> box;
+    private UFRvAdapter adapter;
+    private Handler handler=new Handler();
 
     private CircleRefreshLayout mRefreshLayout;
 
@@ -32,10 +42,14 @@ public class SortFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.tab_sorting,container,false);
-        mlvcol=(ListView)v.findViewById(R.id.lvmovie);
         mRefreshLayout=(CircleRefreshLayout)v.findViewById(R.id.refresh_layout);
-        ViewHolderAdapter mAdapter=new ViewHolderAdapter(getActivity(),names);
-        mlvcol.setAdapter(mAdapter);
+        mRecyclerView=(RecyclerView)v.findViewById(R.id.rv_paihang);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter=new UFRvAdapter(getActivity());
+        Log.i("adapter","this");
+
+        new Boxjson(url,mRecyclerView,adapter,handler).start();
+
 
         mRefreshLayout.setOnRefreshListener(new CircleRefreshLayout.OnCircleRefreshListener() {
 

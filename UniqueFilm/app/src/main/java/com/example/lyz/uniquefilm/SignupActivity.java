@@ -8,63 +8,72 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.lyz.uniquefilm.Database.userinformation;
+
+import java.util.List;
+
+import cn.bmob.v3.BmobObject;
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobSMS;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private int leftchance=3;
+    private EditText etname;
+    private EditText etpassword;
+    private EditText etphone;
+    private Button btnsignup;
+    private TextView tverror;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        Button button1=(Button)findViewById(R.id.button1);
-        button1.getBackground().setAlpha(200);
-    }
+        //BmobSMS.initialize(this,"486138ea611fa2a2a8728ef9f8f836b5");
+        etname=(EditText)findViewById(R.id.et_username);
+        etpassword=(EditText)findViewById(R.id.et_password);
+        etphone=(EditText)findViewById(R.id.et_phone);
+        btnsignup=(Button)findViewById(R.id.btn_signup);
+        tverror=(TextView)findViewById(R.id.tv_error);
 
-    public void TextClick(View view)
-    {
-        //TextView textView1=(TextView)findViewById(R.id.textview_forget);
-        Intent intent=new Intent(SignupActivity.this,SigninActivity.class);
-        startActivity(intent);
-
-    }
-
-
-    public void myClick(View view){
-        Button button1=(Button)findViewById(R.id.button1);
-        EditText editText1=(EditText)findViewById(R.id.editText1);
-        EditText editText2=(EditText)findViewById(R.id.editText2);
-
-
-        if((editText1.getText().toString().equals("20152100132"))&&(editText2.getText().toString().equals("1234567"))){
-            Toast toast2=Toast.makeText(SignupActivity.this, "Sign up successfully",Toast.LENGTH_LONG);
-            toast2.show();
-            button1.setEnabled(false);
-        }
-        else
-        {
-            Toast toast3=Toast.makeText(SignupActivity.this,"Sign up fail",Toast.LENGTH_LONG);
-            toast3.show();
-
-
-            leftchance--;
-            AlertDialog alert=new AlertDialog.Builder(SignupActivity.this).create();
-            alert.setMessage("还有"+leftchance+"次机会输入用户密码");
-            alert.setButton(DialogInterface.BUTTON_POSITIVE,"确定", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Toast.makeText(SignupActivity.this,"Try again",Toast.LENGTH_LONG).show();
-                }
-
-            });
-            alert.show();
-            if(leftchance==0) {
-                button1.setEnabled(false);
+        btnsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final boolean error=false;
+                final String username=etname.getText().toString();
+                final String userpassword=etpassword.getText().toString();
+                final String userphone=etphone.getText().toString();
+                BmobQuery<userinformation> query=new BmobQuery<userinformation>();
+                query.addWhereEqualTo("username",username);
+                query.findObjects(new FindListener<userinformation>() {
+                    @Override
+                    public void done(List<userinformation> list, BmobException e) {
+                        if(e==null){
+                            if(list.size()!=0){
+                                tverror.setText("该用户名已存在！");
+                            }
+                            else{
+                                Bundle bundle=new Bundle();
+                                bundle.putString("username",username);
+                                bundle.putString("userpassword",userpassword);
+                                bundle.putString("userphone",userphone);
+                                Intent intent=new Intent(SignupActivity.this,CheckphoneActivity.class);
+                                intent.putExtra("user",bundle);
+                                startActivity(intent);
+                            }
+                        }
+                        else {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
-        }
-
-
-
+        });
     }
+
+
 }

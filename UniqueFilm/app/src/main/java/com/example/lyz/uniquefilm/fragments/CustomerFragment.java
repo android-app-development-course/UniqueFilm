@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.lyz.uniquefilm.R;
+import com.example.lyz.uniquefilm.SigninActivity;
 import com.example.lyz.uniquefilm.SignupActivity;
 import com.example.lyz.uniquefilm.UsercolActivity;
 
@@ -47,7 +48,7 @@ public class CustomerFragment extends Fragment {
         imusericon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), SignupActivity.class);
+                Intent intent=new Intent(getActivity(), SigninActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.in_from_bottom,R.anim.out_to_top);
             }
