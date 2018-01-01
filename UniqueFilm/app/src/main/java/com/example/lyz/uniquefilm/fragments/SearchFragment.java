@@ -20,6 +20,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -33,6 +34,7 @@ import com.example.lyz.uniquefilm.Database.movies;
 import com.example.lyz.uniquefilm.FilmDetailActivity;
 import com.example.lyz.uniquefilm.MainActivity;
 import com.example.lyz.uniquefilm.R;
+import com.example.lyz.uniquefilm.SearchResultActivity;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -98,22 +100,7 @@ public class SearchFragment extends Fragment {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mSearchAutoComplete.isShown())
-                {
-                    try{
-                        mSearchAutoComplete.setText("");
-                        searchView.onActionViewCollapsed();
-                        //Method method=searchView.getClass().getDeclaredMethod("onCloseClicked");
-                        //method.setAccessible(true);
-                        //method.invoke(searchView);
-                    } catch (Exception e) {
-                        e.printStackTrace();}
-                    toolbar.setNavigationIcon(null);
-                }
-                else
-                {
 
-                }
 
             }
 
@@ -239,14 +226,16 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        // WindowManager wm = this.getWindowManager();
-        // int width=wm.getDefaultDisplay().getWidth();
-        //int width_btn=popup_button.getWidth();
+        WindowManager wm = getActivity().getWindowManager();
+         int width=wm.getDefaultDisplay().getWidth();
+        int width_btn=popup_button.getWidth();
         //int width_nav= toolbar.getNavigationIcon().getMinimumWidth();
-        //int width_final=width-width_btn+100;
-        //searchView.setMaxWidth(width_final);
+        int width_final=width-width_btn-100;
+        searchView.setMaxWidth(width_final);
+        searchView.setIconifiedByDefault(true);
 
         searchView.setQueryHint("电影/类型/评分...");
+
 
         mSearchAutoComplete.setTextColor(getResources().getColor(android.R.color.background_light));
         mSearchAutoComplete.setHintTextColor(Color.parseColor("#FFBBFF"));
@@ -257,8 +246,12 @@ public class SearchFragment extends Fragment {
             @Override
             //提交监听事件，比对数据库，跳转到搜索结果
             public boolean onQueryTextSubmit(String query) {
-                //获取用户搜索内容
                 String content=searchView.getQuery().toString();
+                if(content.length()>0){
+                    Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                    startActivity(intent);}
+
+
                 //如果用户是搜索所有结果
                 if(type==1){
 
@@ -273,7 +266,7 @@ public class SearchFragment extends Fragment {
 
                 }
 
-               return  false;
+               return  true;
             }
             @Override
             //检测文字变化，搜索提示功能
@@ -286,17 +279,14 @@ public class SearchFragment extends Fragment {
 
 
         //有文字时显示x
-        searchView.onActionViewExpanded();
-        searchView.setIconified(true);
+
+        //searchView.setIconified(true);
 
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(mSearchAutoComplete.isShown()){
-                    toolbar.setNavigationIcon(R.mipmap.left2);}
-                else
-                    toolbar.setNavigationIcon(null);
+
 
             }
         });
