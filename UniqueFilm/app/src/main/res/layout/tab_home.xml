@@ -3,8 +3,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
               android:orientation="vertical"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@mipmap/otherbg">
+                xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:id="@+id/search_lay"
@@ -33,16 +32,7 @@
 
         </LinearLayout>
 
-        <SearchView
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/search_view"
-            android:layout_alignParentTop="true"
-            android:layout_gravity="center_vertical"
-            android:iconifiedByDefault="false"
-            android:queryHint="电影名称/类型/评分"
-            android:background="@drawable/search_shape">
-        </SearchView>
+
 
         <TextView
             android:layout_width="match_parent"

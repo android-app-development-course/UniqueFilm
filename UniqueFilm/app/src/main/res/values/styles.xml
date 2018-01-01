@@ -18,8 +18,8 @@
     </declare-styleable>
 
     <style name="AppTheme.NoActionBar2" parent="AppTheme">
-        <item name="colorPrimary">#8E388E</item>
-        <item name="colorPrimaryDark">#8E388E</item>
+        <item name="colorPrimary">@color/head</item>
+        <item name="colorPrimaryDark">@color/head</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="searchViewStyle">@style/Widget.Search</item>
