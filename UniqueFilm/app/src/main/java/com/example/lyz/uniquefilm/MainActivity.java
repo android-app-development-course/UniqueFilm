@@ -16,12 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.lyz.uniquefilm.fragments.CustomerFragment;
 import com.example.lyz.uniquefilm.fragments.HomeFragment;
 import com.example.lyz.uniquefilm.fragments.MyFragmentAdapter;
 import com.example.lyz.uniquefilm.fragments.SearchFragment;
 import com.example.lyz.uniquefilm.fragments.SortFragment;
+import com.example.lyz.uniquefilm.fragments.WritingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,11 +41,13 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     private LinearLayout mTabsorting;
     private LinearLayout mTabcustomer;
     private LinearLayout mTabsearch;
+    private LinearLayout mTabWrite;
 
     private ImageButton mhomeImg;
     private ImageButton msortingImg;
     private ImageButton mcustomerImg;
     private ImageButton msearchImg;
+    private ImageButton mwriteImg;
 
     LoadingDialog loading;
 
@@ -72,42 +76,54 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         mTabsorting.setOnClickListener(this);
         mTabcustomer.setOnClickListener(this);
         mTabsearch.setOnClickListener(this);
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        mTabWrite.setOnClickListener(this);
+        mwriteImg.setOnClickListener(new View.OnClickListener() {//set button click
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                int currentItem=mViewPager.getCurrentItem();
-                switch (currentItem){
-                    case 0:
-                        resetImg();
-                        mhomeImg.setImageResource(R.mipmap.home_w);
-                        break;
-                    case 1:
-                        resetImg();
-                        msortingImg.setImageResource(R.mipmap.sorting_w);
-                        break;
-                    case 2:
-                        resetImg();
-                        msearchImg.setImageResource(R.mipmap.search_w);
-                        break;
-                    case 3:
-                        resetImg();
-                        mcustomerImg.setImageResource(R.mipmap.customer_w);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "12", Toast.LENGTH_LONG).show();
+                mViewPager.setCurrentItem(2);
             }
         });
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                    @Override
+                    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                    }
+
+                    @Override
+                    public void onPageSelected(int position) {
+                        int currentItem = mViewPager.getCurrentItem();
+                        switch (currentItem) {
+                            case 0:
+                                resetImg();
+                                mhomeImg.setImageResource(R.mipmap.home_w);
+                                break;
+                            case 1:
+                                resetImg();
+                                msortingImg.setImageResource(R.mipmap.sorting_w);
+                                break;
+                            case 2:
+                                resetImg();
+                                mwriteImg.setImageResource(R.mipmap.add_w);
+                                break;
+                            case 3:
+                                resetImg();
+                                msearchImg.setImageResource(R.mipmap.search_w);
+                                break;
+                            case 4:
+                                resetImg();
+                                mcustomerImg.setImageResource(R.mipmap.customer_w);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+
+                    @Override
+                    public void onPageScrollStateChanged(int state) {
+
+                    }
+                });
     }
 
     private void initView(){
@@ -116,11 +132,13 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         mTabsorting=(LinearLayout)findViewById(R.id.id_tab_sorting);
         mTabcustomer=(LinearLayout)findViewById(R.id.id_tab_customer);
         mTabsearch=(LinearLayout)findViewById(R.id.id_tab_search);
+        mTabWrite=(LinearLayout)findViewById(R.id.id_tab_write);
 
         mhomeImg=(ImageButton)findViewById(R.id.id_tab_home_img);
         msortingImg=(ImageButton)findViewById(R.id.id_tab_sorting_img);
         mcustomerImg=(ImageButton)findViewById(R.id.id_tab_customer_img);
         msearchImg=(ImageButton)findViewById(R.id.id_tab_search_img);
+        mwriteImg=(ImageButton)findViewById(R.id.id_tab_write_img);
     }
 
     private void initViewPage(){
@@ -132,8 +150,10 @@ public class MainActivity extends AppCompatActivity implements android.view.View
 
         mViews.add(new HomeFragment());
         mViews.add(new SortFragment());
+        mViews.add(new WritingFragment());
         mViews.add(new SearchFragment());
         mViews.add(new CustomerFragment());
+
 
 
         MyFragmentAdapter adapter=new MyFragmentAdapter(getSupportFragmentManager(),mViews);
@@ -186,13 +206,18 @@ public class MainActivity extends AppCompatActivity implements android.view.View
                 resetImg();
                 msortingImg.setImageResource(R.mipmap.sorting_w);
                 break;
-            case R.id.id_tab_search:
+            case R.id.id_tab_write:
                 mViewPager.setCurrentItem(2);
+                resetImg();
+                msearchImg.setImageResource(R.mipmap.add_w);
+                break;
+            case R.id.id_tab_search:
+                mViewPager.setCurrentItem(3);
                 resetImg();
                 msearchImg.setImageResource(R.mipmap.search_w);
                 break;
             case R.id.id_tab_customer:
-                mViewPager.setCurrentItem(3);
+                mViewPager.setCurrentItem(4);
                 resetImg();
                 mcustomerImg.setImageResource(R.mipmap.customer_w);
                 break;
@@ -206,6 +231,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         msortingImg.setImageResource(R.mipmap.sorting_y);
         mcustomerImg.setImageResource(R.mipmap.customer_y);
         msearchImg.setImageResource(R.mipmap.search_y);
+        mwriteImg.setImageResource(R.mipmap.add_y);
     }
 
     @Override

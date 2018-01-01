@@ -50,13 +50,14 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:id="@+id/id_tab_add"
+        android:id="@+id/id_tab_write"
         android:gravity="center"
         android:orientation="vertical">
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@mipmap/add_y"
+            android:id="@+id/id_tab_write_img"
             android:layout_marginLeft="14dp"
             android:layout_marginRight="14dp"
             android:layout_marginTop="3dp"

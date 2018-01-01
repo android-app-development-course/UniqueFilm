@@ -50,5 +50,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.2.4'
     compile 'com.github.markushi:circlebutton:1.1'
     compile 'com.github.clans:fab:1.6.4'
+    compile 'com.nightonke:boommenu:2.1.1'
     testCompile 'junit:junit:4.12'
 }

@@ -102,9 +102,10 @@ public class SearchFragment extends Fragment {
                 {
                     try{
                         mSearchAutoComplete.setText("");
-                        Method method=searchView.getClass().getDeclaredMethod("onCloseClicked");
-                        method.setAccessible(true);
-                        method.invoke(searchView);
+                        searchView.onActionViewCollapsed();
+                        //Method method=searchView.getClass().getDeclaredMethod("onCloseClicked");
+                        //method.setAccessible(true);
+                        //method.invoke(searchView);
                     } catch (Exception e) {
                         e.printStackTrace();}
                     toolbar.setNavigationIcon(null);
