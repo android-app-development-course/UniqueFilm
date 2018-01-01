@@ -41,7 +41,8 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".UsercolActivity" />
         <activity android:name=".FilmDetailActivity" />
-        <activity android:name=".CitychooseActivity" />
+        <activity android:name=".CitychooseActivity"
+        android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".CheckphoneActivity" />
 
         <meta-data
