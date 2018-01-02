@@ -89,7 +89,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(getActivity(), CitychooseActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 1);// 1 唯一标识选择城市页面
             }
         });
 
@@ -145,6 +145,20 @@ public class HomeFragment extends Fragment {
         mLocationClient.stop();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+            {
+                if(resultCode==1){
+                String resultstr=data.getStringExtra("result");
+                btnchosecity.setText(resultstr);}
+            }
+            break;
+        }
+    }
+
     private void setLocationOption(){
         LocationClientOption option=new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
@@ -166,6 +180,7 @@ public class HomeFragment extends Fragment {
         }
         return list;
     }
+
 
 
     public class MyLocationListener implements BDLocationListener {

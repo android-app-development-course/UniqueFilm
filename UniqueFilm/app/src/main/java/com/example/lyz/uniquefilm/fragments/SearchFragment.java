@@ -118,6 +118,8 @@ public class SearchFragment extends Fragment {
                 intent.putExtra("score",score);
                 intent.putExtra("type",type);
                 startActivity(intent);
+                startActivity(intent);
+
             }
         });
         nine.setOnClickListener(new View.OnClickListener() {

@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.lyz.uniquefilm.CitychooseActivity">
 
 
-    <TableRow
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/head"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:gravity="center">
         <Button
             android:id="@+id/btnret"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"/>
-        <TextView
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_weight="2"
+            android:background="@mipmap/left2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
 
         <SearchView
             android:layout_width="0dp"
@@ -32,61 +32,63 @@
             android:layout_marginRight="20dp"
             android:layout_alignParentTop="true"
             android:iconifiedByDefault="false"
-            android:queryHint="电影名称/类型/评分"
-            android:background="@drawable/search_shape">
+            android:queryHint="搜索城市..."
+            android:background="#ffffff">
         </SearchView>
 
 
-    </TableRow>
+    </LinearLayout>
 
 
 
 
-    <TableRow
 
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_below="@id/svcity"
-        android:layout_weight="1">
         <LinearLayout
             android:orientation="vertical"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="20dp"
+            android:layout_width="match_parent"
+            android:layout_weight="3"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp">
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="当前城市:"
+                android:layout_weight="1"
                 android:textSize="20sp"/>
             <Button
                 android:id="@+id/currentcity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="广州"
+                android:layout_weight="1"
                 android:layout_marginTop="7dp"
                 android:textSize="20sp"
 
                 android:background="@drawable/city_btn"/>
         </LinearLayout>
-    </TableRow>
-    <TableRow
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp">
+
+
         <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_below="@id/currentcity"
             android:layout_marginLeft="20dp"
-            android:orientation="vertical">
+            android:layout_weight="3"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:text="热门城市："
-                android:textSize="20sp"/>
+                android:textSize="20sp"
+                android:layout_weight="1"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="0dp"
+                android:layout_weight="1">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -119,16 +121,18 @@
             </LinearLayout>
         </LinearLayout>
 
-    </TableRow>
-    <TableRow
-        android:layout_weight="12"
+
+    <LinearLayout
+        android:layout_weight="10"
         android:layout_width="wrap_content"
-        android:layout_height="0dp">
-        <ListView>
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp">
+      <ListView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:id="@+id/allCity"/>
 
-        </ListView>
-
-    </TableRow>
+    </LinearLayout>
 
 
-</TableLayout>
+</LinearLayout>
