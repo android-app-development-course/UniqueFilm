@@ -109,6 +109,41 @@ public class SearchFragment extends Fragment {
 
 
 
+        eight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                score=8;
+                Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                intent.putExtra("content","");
+                intent.putExtra("type",3);
+                intent.putExtra("score",8);
+                startActivity(intent);
+            }
+        });
+
+        nine.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                score=8;
+                Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                intent.putExtra("content","");
+                intent.putExtra("type",3);
+                intent.putExtra("score",0);
+                startActivity(intent);
+            }
+        });
+
+        ten.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                score=8;
+                Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                intent.putExtra("content","");
+                intent.putExtra("type",3);
+                intent.putExtra("score",10);
+                startActivity(intent);
+            }
+        });
 
 
         //热门搜索的adpter item点击函数
@@ -230,6 +265,9 @@ public class SearchFragment extends Fragment {
                 String content=searchView.getQuery().toString();
                 if(content.length()>0){
                     Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                    intent.putExtra("content",content);
+                    intent.putExtra("type",type);
+                    intent.putExtra("score",8);
                     startActivity(intent);}
 
 
