@@ -55,6 +55,7 @@ public class SigninActivity extends AppCompatActivity {
                                     SharedPreferences.Editor editor=myPreference.edit();
                                     editor.putBoolean("userstate",true);
                                     editor.putString("username",username);
+                                    editor.putString("userid",list.get(0).getObjectId());
                                     editor.commit();
                                     Toast.makeText(SigninActivity.this,"登录成功！",Toast.LENGTH_SHORT).show();
                                     finish();

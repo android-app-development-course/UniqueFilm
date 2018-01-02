@@ -24,7 +24,7 @@ import java.util.List;
 public class KwSearchRvAdapter extends RecyclerView.Adapter<KwSearchRvAdapter.KwSRvHolder>
         implements View.OnClickListener {
 
-    private List<movies> list;
+    public List<movies> list;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
 
@@ -39,6 +39,7 @@ public class KwSearchRvAdapter extends RecyclerView.Adapter<KwSearchRvAdapter.Kw
         Log.i("info",list.get(0).getMoviename());
         this.list=list;
     }
+
 
     public movies getDate(int position){
         movies info=list.get(position);

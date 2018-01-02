@@ -1,7 +1,9 @@
 package com.example.lyz.uniquefilm.fragments;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.example.lyz.uniquefilm.R;
 import com.example.lyz.uniquefilm.SigninActivity;
@@ -27,6 +30,8 @@ public class CustomerFragment extends Fragment {
     private Button bthmarked;
     private Button btrecommend;
     private Button btsetting;
+    private TextView tvusername;
+    boolean state;
 
     @Nullable
     @Override
@@ -37,6 +42,13 @@ public class CustomerFragment extends Fragment {
         bthmarked=(Button)v.findViewById(R.id.btnhavemarked);
         btrecommend=(Button)v.findViewById(R.id.btnrecommend);
         btsetting=(Button)v.findViewById(R.id.btnsettings);
+        tvusername=(TextView)v.findViewById(R.id.tvshowusername);
+        SharedPreferences myPreference=getActivity().getSharedPreferences("myPreference", Context.MODE_PRIVATE);
+        state=myPreference.getBoolean("userstate",false);
+        if(state){
+            final String username=myPreference.getString("username","");
+            tvusername.setText(username);
+        }
 
         return v;
     }
@@ -48,9 +60,11 @@ public class CustomerFragment extends Fragment {
         imusericon.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), SigninActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.in_from_bottom,R.anim.out_to_top);
+                if(!state){
+                    Intent intent=new Intent(getActivity(), SigninActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.in_from_bottom,R.anim.out_to_top);
+                }
             }
         });
 

@@ -5,19 +5,16 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lyz.uniquefilm.Analysis.Httpimage;
+import com.example.lyz.uniquefilm.BmobThread.Addcollection;
 import com.example.lyz.uniquefilm.Database.userinformation;
 
 import java.util.List;
@@ -25,7 +22,6 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.UpdateListener;
 
 public class FilmDetailActivity extends AppCompatActivity {
 
@@ -74,28 +70,22 @@ public class FilmDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 SharedPreferences myPreference=getSharedPreferences("myPreference", Context.MODE_PRIVATE);
                 boolean state=myPreference.getBoolean("userstate",false);
+
                 if(state){
-                    String username=myPreference.getString("username","");
+                    final String username=myPreference.getString("username","");
                     BmobQuery<userinformation> query=new BmobQuery<userinformation>();
                     query.addWhereEqualTo("username",username);
+                    Log.i("username",username);
                     query.findObjects(new FindListener<userinformation>() {
                         @Override
                         public void done(List<userinformation> list, BmobException e) {
                             if(e==null) {
-                                userinformation user = list.get(0);
-                                user.setUsercollection(list.get(0).getUsercollection() + Integer.toString(movieid) + ",");
-                                user.update(Integer.toString(user.getUserid()), new UpdateListener() {
-                                    @Override
-                                    public void done(BmobException e) {
-                                        if (e == null) {
-                                            Toast.makeText(FilmDetailActivity.this, "收藏成功！", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toast.makeText(FilmDetailActivity.this, "收藏失败！", Toast.LENGTH_SHORT).show();
-                                        }
-                                    }
-                                });
+                                userinformation user = new userinformation();
+                                user=list.get(0);
+                                new Addcollection(user,movieid).start();
                             }
                             else {
+                                e.printStackTrace();
                                 Toast.makeText(FilmDetailActivity.this, "收藏失败！", Toast.LENGTH_SHORT).show();
                             }
 
@@ -128,6 +118,10 @@ public class FilmDetailActivity extends AppCompatActivity {
     }
 
 
+    private void updatecollection(userinformation user,int movieid){
+
+
+    }
 
     void init(){
         iv_poster=(ImageView)findViewById(R.id.iv_poster);

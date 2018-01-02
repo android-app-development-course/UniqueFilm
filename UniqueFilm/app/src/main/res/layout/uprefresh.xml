@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ProgressWheel="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="40dp">
+
+    <com.example.lyz.uniquefilm.Refresh.ProgressWheel
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/rcv_load_more"
+        ProgressWheel:pwRimColor="@color/colorPrimary"
+        ProgressWheel:pwBarLength="30dp"
+        ProgressWheel:pwBarColor="#ffffff"
+        ProgressWheel:pwBarWidth="5dp"
+        ProgressWheel:pwRimWidth="4dp"/>
+
+</LinearLayout>

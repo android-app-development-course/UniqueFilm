@@ -80,7 +80,7 @@ public class SearchFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v_all=inflater.inflate(R.layout.tab_search,container,false);
         //btngo=(Button)v_all.findViewById(R.id.btn_search);
         //etsearch=(EditText)v.findViewById(R.id.et_search);
@@ -112,18 +112,36 @@ public class SearchFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 score=8;
+                type=3;
+                Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                intent.putExtra("content","");
+                intent.putExtra("score",score);
+                intent.putExtra("type",type);
+                startActivity(intent);
             }
         });
         nine.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 score=9;
+                type=3;
+                Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                intent.putExtra("content","");
+                intent.putExtra("score",score);
+                intent.putExtra("type",type);
+                startActivity(intent);
             }
         });
         ten.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 score=10;
+                type=3;
+                Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                intent.putExtra("content","");
+                intent.putExtra("score",score);
+                intent.putExtra("type",type);
+                startActivity(intent);
             }
         });
 
@@ -222,6 +240,7 @@ public class SearchFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 type=position;
+                Log.i("type:",Integer.toString(type));
                 window.dismiss();
             }
         });
@@ -249,6 +268,9 @@ public class SearchFragment extends Fragment {
                 String content=searchView.getQuery().toString();
                 if(content.length()>0){
                     Intent intent=new Intent(getActivity(),SearchResultActivity.class);
+                    intent.putExtra("content",content);
+                    intent.putExtra("type",type);
+                    intent.putExtra("score",score);
                     startActivity(intent);}
 
 

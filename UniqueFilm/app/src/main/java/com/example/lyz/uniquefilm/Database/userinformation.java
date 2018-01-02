@@ -15,6 +15,15 @@ public class userinformation extends BmobObject {
     private String userphone;
     private String usercollection;
     private String userscored;
+    private userinformation user;
+
+    public userinformation getUser() {
+        return user;
+    }
+
+    public void setUser(userinformation user) {
+        this.user = user;
+    }
 
     public int getUserid() {
         return userid;
