@@ -97,9 +97,7 @@ public class SearchFragment extends Fragment {
 
 
         });
-
-
-
+        
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
