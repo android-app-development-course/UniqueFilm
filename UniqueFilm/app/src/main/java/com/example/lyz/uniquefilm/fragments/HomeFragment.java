@@ -1,7 +1,9 @@
 package com.example.lyz.uniquefilm.fragments;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -204,7 +206,17 @@ public class HomeFragment extends Fragment {
 
             else
                 Toast.makeText(getActivity(),"定位失败，错误码为"+Integer.toString(errorCode),Toast.LENGTH_LONG).show();
-            btnchosecity.setText(city);
+            SharedPreferences myPreference=getActivity().getSharedPreferences("myPreference", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=myPreference.edit();
+            if(!city.equals("")){
+                editor.putString("city",city);
+
+                btnchosecity.setText(city);
+            }
+            else{
+                editor.putString("city","北京市");
+            }
+            editor.commit();
         }
 
 

@@ -52,13 +52,20 @@
         <EditText
             android:id="@+id/writingcontent_et"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:background="@null"
             android:gravity="top"
             android:hint="输入正文..."
             android:textColorHint="#CDCDB4" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_addmovie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
 
     </LinearLayout>
 

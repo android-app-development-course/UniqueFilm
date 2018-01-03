@@ -17,7 +17,9 @@ import android.widget.TextView;
 import com.example.lyz.uniquefilm.R;
 import com.example.lyz.uniquefilm.SigninActivity;
 import com.example.lyz.uniquefilm.SignupActivity;
+import com.example.lyz.uniquefilm.UserComActivity;
 import com.example.lyz.uniquefilm.UsercolActivity;
+import com.example.lyz.uniquefilm.UserrecommendActivity;
 
 /**
  * Created by lyz on 17-11-19.
@@ -29,6 +31,7 @@ public class CustomerFragment extends Fragment {
     private Button btcollect;
     private Button bthmarked;
     private Button btrecommend;
+    private Button btncom;
     private Button btsetting;
     private TextView tvusername;
     boolean state;
@@ -41,6 +44,7 @@ public class CustomerFragment extends Fragment {
         btcollect=(Button)v.findViewById(R.id.btncollections);
         bthmarked=(Button)v.findViewById(R.id.btnhavemarked);
         btrecommend=(Button)v.findViewById(R.id.btnrecommend);
+        btncom=(Button)v.findViewById(R.id.btncommends);
         btsetting=(Button)v.findViewById(R.id.btnsettings);
         tvusername=(TextView)v.findViewById(R.id.tvshowusername);
         SharedPreferences myPreference=getActivity().getSharedPreferences("myPreference", Context.MODE_PRIVATE);
@@ -87,7 +91,16 @@ public class CustomerFragment extends Fragment {
         btrecommend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), UserrecommendActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        btncom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), UserComActivity.class);
+                startActivity(intent);
             }
         });
 

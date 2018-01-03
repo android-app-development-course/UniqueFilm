@@ -97,7 +97,7 @@ public class SearchFragment extends Fragment {
 
 
         });
-        
+
         eight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +117,7 @@ public class SearchFragment extends Fragment {
                 Intent intent=new Intent(getActivity(),SearchResultActivity.class);
                 intent.putExtra("content","");
                 intent.putExtra("type",3);
-                intent.putExtra("score",0);
+                intent.putExtra("score",9);
                 startActivity(intent);
             }
         });

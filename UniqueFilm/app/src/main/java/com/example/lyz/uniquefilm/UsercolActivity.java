@@ -35,6 +35,7 @@ public class UsercolActivity extends AppCompatActivity {
 
     private ImageButton ibret;
     private CircleRefreshLayout mRefreshLayout;
+    List<movies> movieslist=new ArrayList<movies>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class UsercolActivity extends AppCompatActivity {
                     String collection[]=collections.split(",");
                     Log.i("lenght",Integer.toString(collection.length));
                     List<movies> moviesList=new ArrayList<movies>() ;
-                    for(int i=0;i<collection.length-1;i++){
+                    for(int i=0;i<collection.length;i++){
 
                         new Getcollection(collection[i],mRecyclerView,adapter).start();
                     }
@@ -67,6 +68,7 @@ public class UsercolActivity extends AppCompatActivity {
                 }
             }
         });
+
 
         ibret.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,5 +90,53 @@ public class UsercolActivity extends AppCompatActivity {
         });
     }
 
+    public class Getcollection extends Thread {
+
+        private userinformation user;
+        private RecyclerView mRecyclerView;
+        private KwSearchRvAdapter mAdapter;
+        private String movieid;
+        private movies mMovies;
+        private List<movies> mlist;
+
+
+        public Getcollection(String movieid,RecyclerView rv,KwSearchRvAdapter adapter){
+            this.movieid=movieid;
+            this.mRecyclerView=rv;
+            this.mAdapter=adapter;
+            this.mlist=adapter.list;
+        }
+
+        @Override
+        public void run() {
+            //user.setUsercollection( user.getUsercollection()+Integer.toString(movieid) + ",");
+            BmobQuery<movies> query=new BmobQuery<movies>();
+            query.addWhereEqualTo("movieid",Integer.parseInt(movieid));
+            query.findObjects(new FindListener<movies>() {
+                @Override
+                public void done(List<movies> list, BmobException e) {
+                    if(e==null){
+                        Log.i("result", "获取成功");
+                        //setcollection(list.get(0));
+                        movieslist.add(list.get(0));
+                        mAdapter.setData(movieslist);
+                        mRecyclerView.setAdapter(mAdapter);
+                        Log.i("setdate","here");
+                    }
+                    else{
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        private void setcollection(movies movie){
+            mMovies=movie;
+        }
+
+        public movies getMovies(){
+            return mMovies;
+        }
+    }
 
 }

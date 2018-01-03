@@ -40,6 +40,7 @@ public class FilmDetailActivity extends AppCompatActivity {
     private TableRow trcover;
     private Button btncollect;
     private Button btnscore;
+    private Button btncinema;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +51,7 @@ public class FilmDetailActivity extends AppCompatActivity {
         final Bundle bundle=intent.getBundleExtra("info");
         //Log.i("bundle",bundle.toString());
         final int movieid=bundle.getInt("id");
+        final String genres=bundle.getString("genres");
         Log.i("bundle",bundle.getString("poster"));
         new Httpimage(bundle.getString("poster"),(ImageView)findViewById(R.id.iv_poster),(TableRow)findViewById(R.id.tr_cover)).execute();
         tv_title.setText(bundle.getString("title"));
@@ -68,9 +70,13 @@ public class FilmDetailActivity extends AppCompatActivity {
         btncollect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 SharedPreferences myPreference=getSharedPreferences("myPreference", Context.MODE_PRIVATE);
                 boolean state=myPreference.getBoolean("userstate",false);
-
+                SharedPreferences.Editor editor=myPreference.edit();
+                String type[]=genres.split("/");
+                Log.i("type",type[0]);
+                editor.putString("type",type[0]+"/");
                 if(state){
                     final String username=myPreference.getString("username","");
                     BmobQuery<userinformation> query=new BmobQuery<userinformation>();
@@ -115,6 +121,14 @@ public class FilmDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btncinema.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences myPreference=getSharedPreferences("myPreference", Context.MODE_PRIVATE);
+
+            }
+        });
     }
 
 
@@ -139,6 +153,7 @@ public class FilmDetailActivity extends AppCompatActivity {
         trcover=(TableRow)findViewById(R.id.tr_cover);
         btncollect=(Button)findViewById(R.id.filmdetail_collect);
         btnscore=(Button)findViewById(R.id.filmdetail_setscore);
+        btncinema=(Button)findViewById(R.id.btn_getcinema);
     }
 
 

@@ -53,6 +53,7 @@ public class ScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 score=4;
+                ibfirst.setBackgroundResource(R.mipmap.starfull);
                 ibsecond.setBackgroundResource(R.mipmap.starfull);
             }
         });
@@ -61,6 +62,8 @@ public class ScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 score=6;
+                ibfirst.setBackgroundResource(R.mipmap.starfull);
+                ibsecond.setBackgroundResource(R.mipmap.starfull);
                 ibthird.setBackgroundResource(R.mipmap.starfull);
             }
         });
@@ -69,6 +72,9 @@ public class ScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 score=8;
+                ibfirst.setBackgroundResource(R.mipmap.starfull);
+                ibsecond.setBackgroundResource(R.mipmap.starfull);
+                ibthird.setBackgroundResource(R.mipmap.starfull);
                 ibforth.setBackgroundResource(R.mipmap.starfull);
             }
         });
@@ -77,6 +83,10 @@ public class ScoreActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 score=10;
+                ibfirst.setBackgroundResource(R.mipmap.starfull);
+                ibsecond.setBackgroundResource(R.mipmap.starfull);
+                ibthird.setBackgroundResource(R.mipmap.starfull);
+                ibforth.setBackgroundResource(R.mipmap.starfull);
                 ibfifth.setBackgroundResource(R.mipmap.starfull);
             }
         });

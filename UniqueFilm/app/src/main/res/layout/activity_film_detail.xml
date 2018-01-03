@@ -191,10 +191,11 @@
             android:layout_weight="3"/>
 
         <Button
-            android:id="@+id/goto_buyticket"
-            android:layout_weight="1"
+            android:id="@+id/btn_getcinema"
+            android:layout_weight="2"
             android:layout_height="match_parent"
-            android:layout_width="0dp"/>
+            android:layout_width="0dp"
+            android:text="上映影院"/>
 
     </TableRow>
     <TableRow
