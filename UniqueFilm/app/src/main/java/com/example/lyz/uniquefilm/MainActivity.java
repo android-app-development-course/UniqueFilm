@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements android.view.View
         mwriteImg.setOnClickListener(new View.OnClickListener() {//set button click
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "12", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "12", Toast.LENGTH_LONG).show();
                 mViewPager.setCurrentItem(2);
             }
         });
@@ -189,13 +189,13 @@ public class MainActivity extends AppCompatActivity implements android.view.View
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.id_tab_home:
-                loading.show();
+               /* loading.show();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         loading.dismiss();
                     }
-                }, 2000);
+                }, 2000);*/
                 //handler.removeCallbacks(runnable);
                 mViewPager.setCurrentItem(0);
                 resetImg();

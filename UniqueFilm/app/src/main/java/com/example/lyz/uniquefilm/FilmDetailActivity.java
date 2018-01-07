@@ -52,7 +52,8 @@ public class FilmDetailActivity extends AppCompatActivity {
         //Log.i("bundle",bundle.toString());
         final int movieid=bundle.getInt("id");
         final String genres=bundle.getString("genres");
-        Log.i("bundle",bundle.getString("poster"));
+        final String title=bundle.getString("title");
+        Log.i("bundle",bundle.getString("title"));
         new Httpimage(bundle.getString("poster"),(ImageView)findViewById(R.id.iv_poster),(TableRow)findViewById(R.id.tr_cover)).execute();
         tv_title.setText(bundle.getString("title"));
         tv_genres.setText(bundle.getString("genres"));
@@ -89,6 +90,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                                 userinformation user = new userinformation();
                                 user=list.get(0);
                                 new Addcollection(user,movieid).start();
+                                Toast.makeText(FilmDetailActivity.this, "收藏成功！", Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 e.printStackTrace();
@@ -125,8 +127,10 @@ public class FilmDetailActivity extends AppCompatActivity {
         btncinema.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences myPreference=getSharedPreferences("myPreference", Context.MODE_PRIVATE);
 
+                Intent intent=new Intent(FilmDetailActivity.this,GetCinemaActivity.class);
+                intent.putExtra("moviename",title);
+                startActivity(intent);
             }
         });
     }

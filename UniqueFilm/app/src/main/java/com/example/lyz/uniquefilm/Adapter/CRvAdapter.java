@@ -39,7 +39,7 @@ public class CRvAdapter extends RecyclerView.Adapter<CRvAdapter.CRvHolder> {
     @Override
     public void onBindViewHolder(CRvHolder holder, int position) {
         CinemaInfo info=list.get(position);
-        holder.cinema.setText(info.getCinemaName());
+        holder.cinema.setText(info.getName());
         holder.address.setText(info.getAddress());
     }
 

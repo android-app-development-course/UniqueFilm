@@ -8,10 +8,23 @@
     tools:context="com.example.lyz.uniquefilm.ScoreActivity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/head">
+
+        <ImageButton
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/return1"
+            android:background="@color/head"
+            android:layout_margin="20dp"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/llscore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp">
+        android:layout_marginTop="90dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,27 +35,32 @@
                 android:id="@+id/ib_first"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/star"/>
+                android:src="@mipmap/star"
+                android:background="#ffff"/>
             <ImageButton
                 android:id="@+id/ib_second"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/star"/>
+                android:src="@mipmap/star"
+                android:background="#ffff"/>
             <ImageButton
                 android:id="@+id/ib_third"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/star"/>
+                android:src="@mipmap/star"
+                android:background="#ffff"/>
             <ImageButton
                 android:id="@+id/ib_forth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/star"/>
+                android:src="@mipmap/star"
+                android:background="#ffff"/>
             <ImageButton
                 android:id="@+id/ib_fifth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/star"/>
+                android:src="@mipmap/star"
+                android:background="#ffff"/>
         </LinearLayout>
 
     </LinearLayout>

@@ -56,7 +56,10 @@ public class ShowrecomActivity extends AppCompatActivity {
         for(int i=0;i<movie.length;i++){
             String subitem[]=movie[i].split(":");
             moviename.add(subitem[0]);
-            introlist.add(subitem[1]);
+            if(subitem.length>1)
+                introlist.add(subitem[1]);
+            else
+                introlist.add("");
         }
         for(int i=0;i<moviename.size();i++){
             Log.i("moviename",moviename.get(i));

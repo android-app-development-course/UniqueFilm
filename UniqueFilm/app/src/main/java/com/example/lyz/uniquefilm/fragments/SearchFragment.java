@@ -1,12 +1,19 @@
 package com.example.lyz.uniquefilm.fragments;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -27,15 +34,28 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
+import com.baidu.location.BDLocation;
+import com.baidu.location.BDLocationListener;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
 import com.example.lyz.uniquefilm.Adapter.KwSearchRvAdapter;
+import com.example.lyz.uniquefilm.Adapter.NpmRvAdapter;
+import com.example.lyz.uniquefilm.CitychooseActivity;
 import com.example.lyz.uniquefilm.Database.movies;
+import com.example.lyz.uniquefilm.Database.newmovies;
 import com.example.lyz.uniquefilm.FilmDetailActivity;
+import com.example.lyz.uniquefilm.NowplayingActivity;
 import com.example.lyz.uniquefilm.R;
 import com.example.lyz.uniquefilm.SearchResultActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 
 /**
  * Created by lyz on 18-1-2.
@@ -46,8 +66,9 @@ public class SearchFragment extends Fragment {
     //private EditText etsearch;
     //private Button btngo;
     private RecyclerView mRecyclerView;
-    private KwSearchRvAdapter hotsearch_adapter;
+    private NpmRvAdapter hotsearch_adapter;
     private Handler handler=new Handler();
+    private List<newmovies> mMoviesList=new ArrayList<newmovies>();
 
     SearchView searchView;
     SearchView.SearchAutoComplete mSearchAutoComplete;
@@ -58,6 +79,7 @@ public class SearchFragment extends Fragment {
     private ArrayAdapter adapter;
     ArrayList<String> popup_list;
     Button popup_button;
+    Button cityChoose;
 
     //评分搜索选择按钮
     at.markushi.ui.CircleButton eight;
@@ -68,6 +90,8 @@ public class SearchFragment extends Fragment {
     int score;
 
     View v_all;
+    public LocationClient mLocationClient=null;
+    private MyLocationListener myListener=new MyLocationListener();
 
     @Nullable
     @Override
@@ -78,7 +102,7 @@ public class SearchFragment extends Fragment {
 
         mRecyclerView=(RecyclerView)v_all.findViewById(R.id.rv_search);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        hotsearch_adapter=new KwSearchRvAdapter(getActivity());
+        hotsearch_adapter=new NpmRvAdapter(getActivity());
 
         eight=(at.markushi.ui.CircleButton)v_all.findViewById(R.id.eight);
         nine=(at.markushi.ui.CircleButton)v_all.findViewById(R.id.nine);
@@ -135,10 +159,10 @@ public class SearchFragment extends Fragment {
         });
 
         //热门搜索的adpter item点击函数
-        hotsearch_adapter.setOnItemClickListener(new KwSearchRvAdapter.OnItemClickListener(){
+        hotsearch_adapter.setOnItemClickListener(new NpmRvAdapter.OnItemClickListener(){
             @Override
             public void onItemClick(View view, int position) {
-                movies info=hotsearch_adapter.getDate(position);
+                newmovies info=hotsearch_adapter.getDate(position);
                 Log.i("info",Integer.toString(position)+info.getMoviename());
                 Intent intent=new Intent(getActivity(),FilmDetailActivity.class);
                 Bundle bundle=new Bundle();
@@ -161,7 +185,7 @@ public class SearchFragment extends Fragment {
             }
         });
         //测试数据
-        List<movies> lists=new ArrayList<>();
+        /*List<movies> lists=new ArrayList<>();
         movies m;
         m=new movies();
         m.setDescription("description");
@@ -171,9 +195,17 @@ public class SearchFragment extends Fragment {
             lists.add(m);
         }
         hotsearch_adapter.setData(lists);
-        mRecyclerView.setAdapter(hotsearch_adapter);
+        mRecyclerView.setAdapter(hotsearch_adapter);*/
 
         setHasOptionsMenu(true);
+
+        for(int i=0;i<8;i++){
+            //if(i==0){
+            //   mMoviesList.removeAll(mMoviesList);
+            //}
+            new Getcollection(i,mRecyclerView,hotsearch_adapter).start();
+
+        }
 
         return v_all;
     }
@@ -189,11 +221,37 @@ public class SearchFragment extends Fragment {
         //通过MenuItem得到SearchView
         searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         popup_button=(Button)v_all.findViewById(R.id.popupwindows_btn);
+        cityChoose=(Button)v_all.findViewById(R.id.btncity1);
         mSearchAutoComplete=(SearchView.SearchAutoComplete)searchView.findViewById(R.id.search_src_text);
         final PopupWindow window = new PopupWindow(popupView,280, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         popup_list=new ArrayList<>();
 
+
+        //判断权限够不够，不够就给
+        if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            }, 1);
+        } else {
+            //够了就设置路径等，准备播放
+            mLocationClient=new LocationClient(getActivity());
+            mLocationClient.registerLocationListener(myListener);
+            setLocationOption();
+            mLocationClient.start();
+            //Toast.makeText(getActivity(),"已定位",Toast.LENGTH_SHORT).show();
+            mLocationClient.requestLocation();
+        }
+
+
+
+        cityChoose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), CitychooseActivity.class);
+                startActivityForResult(intent, 31);// 1 唯一标识选择城市页面
+            }
+        });
 
 
         popup_list=data();
@@ -293,8 +351,18 @@ public class SearchFragment extends Fragment {
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                popup_button.setVisibility(v_all.VISIBLE);
+                cityChoose.setVisibility(v_all.GONE);
 
-
+            }
+        });
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                popup_button.setVisibility(v_all.GONE);
+                popup_button.setVisibility(v_all.VISIBLE);
+                searchView.onActionViewCollapsed();
+                return true;
             }
         });
         searchView.getQuery();
@@ -310,7 +378,145 @@ public class SearchFragment extends Fragment {
         return list;
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 1:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //bindService(MediaServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
+                    mLocationClient=new LocationClient(getActivity());
+                    mLocationClient.registerLocationListener(myListener);
+                    setLocationOption();
+                    mLocationClient.start();
+                    //Toast.makeText(getActivity(),"已定位",Toast.LENGTH_SHORT).show();
+                    mLocationClient.requestLocation();
+                } else {
+                    Toast.makeText(getActivity(), "权限不够无法定位，程序将退出", Toast.LENGTH_SHORT).show();
 
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mLocationClient.stop();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+            {
+                if(resultCode==31){
+                    String resultstr=data.getStringExtra("result");
+                    cityChoose.setText(resultstr);}
+            }
+            break;
+        }
+    }
+
+    private void setLocationOption(){
+        LocationClientOption option=new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        option.setCoorType("bd0911");
+        option.setOpenGps(true);
+        option.setLocationNotify(true);
+        option.setIgnoreKillProcess(false);
+        option.SetIgnoreCacheException(false);
+        option.setWifiCacheTimeOut(5*60*1000);
+        option.setEnableSimulateGps(false);
+        option.setIsNeedAddress(true);
+        mLocationClient.setLocOption(option);
+    }
+
+
+    public class MyLocationListener implements BDLocationListener {
+
+
+        @Override
+        public void onReceiveLocation(BDLocation bdLocation) {
+            double latitude=bdLocation.getLatitude();
+            double longitude=bdLocation.getLongitude();
+            float radius=bdLocation.getRadius();
+
+            String coorType=bdLocation.getCoorType();
+            int errorCode=bdLocation.getLocType();
+            String city=bdLocation.getCity();
+            if(errorCode==61||errorCode==161||errorCode==65||errorCode==66||errorCode==68){
+                if(!city.equals(""))
+                    Toast.makeText(getActivity(),"已定位到当前城市",Toast.LENGTH_LONG).show();
+                else
+                    Toast.makeText(getActivity(),"定位失败！",Toast.LENGTH_LONG).show();
+            }
+
+            else
+                Toast.makeText(getActivity(),"定位失败，错误码为"+Integer.toString(errorCode),Toast.LENGTH_LONG).show();
+            SharedPreferences myPreference=getActivity().getSharedPreferences("myPreference", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor=myPreference.edit();
+            if(!city.equals("")){
+                editor.putString("city",city);
+
+                cityChoose.setText(city);
+            }
+            else{
+                editor.putString("city","北京市");
+            }
+            editor.commit();
+        }
+
+
+    }
+
+    public class Getcollection extends Thread {
+
+        private RecyclerView mRecyclerView;
+        private NpmRvAdapter mAdapter;
+        private movies mMovies;
+        private int movieid;
+
+
+        public Getcollection(int movieid,RecyclerView rv,NpmRvAdapter adapter){
+            this.movieid=movieid;
+            this.mRecyclerView=rv;
+            this.mAdapter=adapter;
+        }
+
+        @Override
+        public void run() {
+            //user.setUsercollection( user.getUsercollection()+Integer.toString(movieid) + ",");
+            BmobQuery<newmovies> query=new BmobQuery<newmovies>();
+            query.addWhereEqualTo("movieid",movieid);
+            query.findObjects(new FindListener<newmovies>() {
+                @Override
+                public void done(List<newmovies> list, BmobException e) {
+                    if(e==null){
+                        Log.i("result", "获取成功");
+                        //setcollection(list.get(0));
+                        mMoviesList.add(list.get(0));
+                        mAdapter.setData(mMoviesList);
+                        mRecyclerView.setAdapter(mAdapter);
+                        Log.i("setdate","here");
+                    }
+                    else{
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+
+        private void setcollection(movies movie){
+            mMovies=movie;
+        }
+
+        public movies getMovies(){
+            return mMovies;
+        }
+    }
 
 }
 

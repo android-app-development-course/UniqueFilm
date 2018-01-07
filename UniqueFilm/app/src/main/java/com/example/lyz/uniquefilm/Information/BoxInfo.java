@@ -26,6 +26,9 @@ public class BoxInfo {
     private String onlineBoxRate;
     private String splitSumBoxInfo;
 
+    public String getReleaseInfo() {
+        return releaseInfo;
+    }
 
     public String getMovieName() {
         return movieName;

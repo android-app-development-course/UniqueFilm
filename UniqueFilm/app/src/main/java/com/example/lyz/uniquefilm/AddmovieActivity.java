@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.lyz.uniquefilm.Adapter.KwSearchRvAdapter;
 import com.example.lyz.uniquefilm.Database.movies;
@@ -24,22 +26,43 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class AddmovieActivity extends AppCompatActivity {
 
-    private EditText etsearch;
+    private SearchView svsearch;
     private RecyclerView mRecyclerView;
     private KwSearchRvAdapter mAdapter;
     MyTextWathcer myTextWathcer;
+    private TextView message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addmovie);
-        etsearch = (EditText) findViewById(R.id.et_search);
+        svsearch = (SearchView) findViewById(R.id.sv_search);
+        message=(TextView)findViewById(R.id.tv_message);
+        svsearch.setIconifiedByDefault(false);
+        svsearch.setSubmitButtonEnabled(true);
+        svsearch.setQueryHint("请输入要查找的电影名");
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_searchresult);
         mAdapter=new KwSearchRvAdapter(AddmovieActivity.this);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         myTextWathcer = new MyTextWathcer();
-        etsearch.addTextChangedListener(myTextWathcer);
+
+        svsearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                String content=query;
+                new Getmovies(content).start();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                String content=newText;
+                new Getmovies(content).start();
+                return false;
+            }
+        });
+        //svsearch.addTextChangedListener(myTextWathcer);
 
         mAdapter.setOnItemClickListener(new KwSearchRvAdapter.OnItemClickListener() {
             @Override
@@ -79,10 +102,7 @@ public class AddmovieActivity extends AppCompatActivity {
         }
     }
 
-    private void setMyText() {
-        etsearch.setText("11111new");
-        etsearch.addTextChangedListener(myTextWathcer);
-    }
+
 
     public class Getmovies extends Thread {
 
@@ -101,12 +121,19 @@ public class AddmovieActivity extends AppCompatActivity {
                 public void done(List<movies> list, BmobException e) {
                     if(e==null){
                         Log.i("set","here");
+                        if(list.size()>0){
+                            message.setText("没有更多搜索结果");
+                        }
+                        else{
+                            message.setText("没有找到匹配项");
+                        }
                         mAdapter.setData(list);
                         mRecyclerView.setAdapter(mAdapter);
                         //Log.i("set","here");
                     }
                     else{
                         e.printStackTrace();
+                        message.setText("没有找到匹配项");
                     }
                 }
             });

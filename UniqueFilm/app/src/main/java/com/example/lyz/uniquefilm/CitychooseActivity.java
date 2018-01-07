@@ -23,7 +23,7 @@ public class CitychooseActivity extends AppCompatActivity {
     private Button HotcityBtn3;
     private String city;
     private SearchView citySearch;
-    ListView cityList;
+    //ListView cityList;
 
 
     @Override
@@ -36,22 +36,21 @@ public class CitychooseActivity extends AppCompatActivity {
         HotcityBtn2=(Button)findViewById(R.id.hotcity2);
         HotcityBtn3=(Button)findViewById(R.id.hotcity3);
         citySearch=(SearchView)findViewById(R.id.svcity);
-        cityList=(ListView)findViewById(R.id.allCity);
         city="无";
 
 
 
 
 
-        ArrayAdapter<String> adapter=new ArrayAdapter(CitychooseActivity.this,android.R.layout.simple_list_item_1,getData());
-        cityList.setAdapter(adapter);
+       // ArrayAdapter<String> adapter=new ArrayAdapter(CitychooseActivity.this,android.R.layout.simple_list_item_1,getData());
+       // cityList.setAdapter(adapter);
 
-        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       /* cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //city=item的值
             }
-        });
+        });*/
 
         btnret.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -41,53 +41,53 @@
             <TextView
                 android:id="@+id/tv_title"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="24sp"
                 android:textStyle="bold"/>
             <TextView
                 android:id="@+id/tv_yeargenres"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="5dp"
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/tv_countrylanguage"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/tv_runtime"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/tv_director"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"/>
             <TextView
                 android:id="@+id/tv_actors"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/tv_releasetime"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"/>
 
             <TextView
                 android:id="@+id/tv_alsoknown"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textSize="12sp"/>
 
@@ -147,7 +147,9 @@
             android:layout_weight="4"
             android:layout_width="0dp"
             android:textSize="20sp"
-            android:textColor="#7d75af"
+            android:textColor="@color/head"
+            android:background="@drawable/detailbtn"
+
             android:text="收藏"
             android:layout_marginLeft="20sp"/>
         <TextView
@@ -161,7 +163,8 @@
             android:text="评分"
             android:textSize="20sp"
             android:layout_width="0dp"
-            android:textColor="#7d75af"
+            android:textColor="@color/head"
+            android:background="@drawable/detailbtn"
             android:layout_marginRight="20dp"/>
 
 
@@ -195,7 +198,9 @@
             android:layout_weight="2"
             android:layout_height="match_parent"
             android:layout_width="0dp"
-            android:text="上映影院"/>
+            android:text="上映影院"
+            android:textColor="@color/head"
+            android:background="@drawable/detailbtn"/>
 
     </TableRow>
     <TableRow

@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.lyz.uniquefilm.Adapter.UFRvAdapter;
 import com.example.lyz.uniquefilm.Analysis.Boxjson;
@@ -35,8 +37,11 @@ public class SortFragment extends Fragment {
     private ArrayList<BoxInfo> box;
     private UFRvAdapter adapter;
     private Handler handler=new Handler();
+    private TextView tvmessage;
+    private ArrayList<BoxInfo> list;
 
     private CircleRefreshLayout mRefreshLayout;
+    private ImageButton first;
 
     @Nullable
     @Override
@@ -44,11 +49,14 @@ public class SortFragment extends Fragment {
         View v=inflater.inflate(R.layout.tab_sorting,container,false);
         mRefreshLayout=(CircleRefreshLayout)v.findViewById(R.id.refresh_layout);
         mRecyclerView=(RecyclerView)v.findViewById(R.id.rv_paihang);
+        tvmessage=(TextView)v.findViewById(R.id.tv_message);
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter=new UFRvAdapter(getActivity());
+        adapter=new UFRvAdapter(getActivity(),(TextView)v.findViewById(R.id.tv_message));
         Log.i("adapter","this");
 
         new Boxjson(url,mRecyclerView,adapter,handler).start();
+
 
 
         mRefreshLayout.setOnRefreshListener(new CircleRefreshLayout.OnCircleRefreshListener() {

@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.lyz.uniquefilm.UserComActivity"
-    android:background="@mipmap/otherbg">
+    tools:context="com.example.lyz.uniquefilm.UserComActivity">
 
     <RelativeLayout
         android:id="@+id/lay_top"
@@ -56,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="130dp"
                 android:layout_marginTop="20dp"
-                android:text="我的推荐"
+                android:text="我推荐的影单"
                 android:textColor="@color/text"
                 android:textSize="26sp"/>
 

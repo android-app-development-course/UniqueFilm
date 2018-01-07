@@ -10,7 +10,8 @@ import java.util.ArrayList;
 
 public class CinemaGsonBean {
 
-    public String reason;
+
     public ArrayList<CinemaInfo> result;
     public int error_code;
+    public String reason;
 }

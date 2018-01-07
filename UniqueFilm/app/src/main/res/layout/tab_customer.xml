@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@mipmap/otherbg">
+    >
 
     <LinearLayout
         android:id="@+id/customer_top"
@@ -35,14 +35,13 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:layout_below="@id/customer_top"
-        android:layout_marginTop="30dp"
-        android:background="@color/head">
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:paddingLeft="25dp"
-            android:src="@mipmap/collection"/>
+            android:src="@mipmap/collection"
+            android:paddingLeft="25dp"/>
 
         <Button
             android:id="@+id/btncollections"
@@ -50,7 +49,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:text="我收藏的电影"
-            android:textColor="@color/text"
+            android:textColor="@color/head"
             android:textSize="16sp"
             android:gravity="center_vertical"
             android:background="@drawable/customer_but_attr"/>
@@ -61,15 +60,14 @@
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
         android:layout_below="@id/lay_col"
-        android:background="@color/line"/>
+        android:background="@color/head"/>
 
     <LinearLayout
         android:id="@+id/lay_marked"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_below="@id/lay_col"
-        android:background="@color/head">
+        android:layout_below="@id/lay_col">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -83,7 +81,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:text="我已评分的电影"
-            android:textColor="@color/text"
+            android:textColor="@color/head"
             android:textSize="16sp"
             android:gravity="center_vertical"
             android:background="@drawable/customer_but_attr"/>
@@ -94,15 +92,14 @@
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
         android:layout_below="@id/lay_marked"
-        android:background="@color/line"/>
+        android:background="@color/head"/>
 
     <LinearLayout
         android:id="@+id/lay_recommend"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_below="@id/lay_marked"
-        android:background="@color/head">
+        android:layout_below="@id/lay_marked">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -116,7 +113,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:text="我的个性推荐"
-            android:textColor="@color/text"
+            android:textColor="@color/head"
             android:textSize="16sp"
             android:gravity="center_vertical"
             android:background="@drawable/customer_but_attr"/>
@@ -127,7 +124,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
         android:layout_below="@id/lay_recommend"
-        android:background="@color/line"/>
+        android:background="@color/head"/>
 
     <LinearLayout
         android:id="@+id/lay_com"
@@ -135,8 +132,7 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         android:layout_below="@id/lay_recommend"
-        android:layout_marginTop="30dp"
-        android:background="@color/head">
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -150,11 +146,18 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:text="我推荐的影单"
-            android:textColor="@color/text"
+            android:textColor="@color/head"
             android:textSize="16sp"
             android:gravity="center_vertical"
             android:background="@drawable/customer_but_attr"/>
     </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="50dp"
+        android:layout_below="@id/lay_com"
+        android:background="@color/head"/>
 
 
     <LinearLayout
@@ -162,8 +165,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
-        android:layout_below="@id/lay_com"
-        android:background="@color/head">
+        android:layout_below="@id/lay_com">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -177,7 +179,7 @@
             android:layout_height="match_parent"
             android:paddingLeft="10dp"
             android:text="设置"
-            android:textColor="@color/text"
+            android:textColor="@color/head"
             android:textSize="16sp"
             android:gravity="center_vertical"
             android:background="@drawable/customer_but_attr"/>
@@ -188,7 +190,7 @@
         android:layout_height="1dp"
         android:layout_marginLeft="50dp"
         android:layout_below="@id/lay_setting"
-        android:background="@color/line"/>
+        android:background="@color/head"/>
 
 
 </RelativeLayout>

@@ -20,8 +20,16 @@
             app:titleTextColor="@android:color/white"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
             <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/btncity1"
+                android:textSize="20sp"
+                android:textColor="#ffffff"
+                android:background="@color/head"/>
+            <Button
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:visibility="gone"
                 android:id="@+id/popupwindows_btn"
                 android:background="@mipmap/menu_button"/>
 

@@ -212,37 +212,6 @@ public class SearchResultActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //测试数据
-    private List<Map<String,Object>> getData(){
-        List<Map<String,Object>> list=new ArrayList<Map<String,Object>>();
-
-        Map<String,Object> map=new HashMap<String,Object>();
-        map.put("title","111");
-        map.put("img",R.mipmap.result1);
-        list.add(map);
-
-        map = new HashMap<String, Object>();
-        map.put("title","222");
-        map.put("img",R.mipmap.result2);
-        list.add(map);
-
-        map = new HashMap<String, Object>();
-        map.put("title","333");
-        map.put("img",R.mipmap.result3);
-        list.add(map);
-
-        map = new HashMap<String, Object>();
-        map.put("title","444");
-        map.put("img",R.mipmap.result4);
-        list.add(map);
-
-        map = new HashMap<String, Object>();
-        map.put("title","555");
-        map.put("img",R.mipmap.result5);
-        list.add(map);
-
-        return  list;
-    }
 
 
     public class SearchTask extends AsyncTask<Integer,Void,ArrayList<SearchInfo>> {

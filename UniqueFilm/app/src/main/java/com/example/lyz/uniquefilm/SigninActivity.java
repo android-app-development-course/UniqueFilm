@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lyz.uniquefilm.Database.userinformation;
@@ -28,6 +29,7 @@ public class SigninActivity extends AppCompatActivity {
     private EditText edpassword;
     private EditText edphone;
     private Button btnsignin;
+    private TextView tvsignup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class SigninActivity extends AppCompatActivity {
         edpassword=(EditText)findViewById(R.id.et_password);
         edphone=(EditText)findViewById(R.id.et_phone);
         btnsignin=(Button)findViewById(R.id.btn_signin);
-
+        tvsignup=(TextView)findViewById(R.id.tv_signup);
         btnsignin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,6 +75,14 @@ public class SigninActivity extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+
+        tvsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SigninActivity.this,SignupActivity.class);
+                startActivity(intent);
             }
         });
     }

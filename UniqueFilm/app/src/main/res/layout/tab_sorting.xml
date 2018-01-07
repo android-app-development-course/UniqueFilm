@@ -2,110 +2,58 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@mipmap/otherbg">
+                xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <RelativeLayout
-        android:id="@+id/sorthead"
+    <LinearLayout
+        android:id="@+id/titlelay"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:background="@color/head">
 
-        <LinearLayout
-            android:id="@+id/titlelay"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="排行榜"
+            android:textColor="@color/text"
+            android:textSize="24sp"/>
+    </LinearLayout>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="排行榜"
-                android:textColor="@color/text"
-                android:textSize="24sp"/>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/first"
-            android:orientation="vertical"
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layout_below="@id/titlelay"
-            android:layout_marginTop="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titlelay"
+        android:id="@+id/lintop"
+        android:layout_marginTop="5dp">
 
-            <ImageButton
-                android:id="@+id/ibfirstpic"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@mipmap/filmicon"
-                android:background="@color/head"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1.6"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="电影名"
+            android:textSize="16sp"/>
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="25dp"
-                android:src="@mipmap/sort1"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="70dp"
-            android:layout_height="130dp"
-            android:orientation="vertical"
-            android:layout_toLeftOf="@id/first"
-            android:layout_marginRight="30dp"
-            android:layout_below="@id/titlelay"
-            android:layout_marginTop="15dp">
-
-            <ImageButton
-                android:id="@+id/ibsecondpic"
-                android:layout_marginTop="10dp"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:src="@mipmap/filmicon"
-                android:background="@color/head"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="20dp"
-                android:src="@mipmap/sort2"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="60dp"
-            android:layout_height="100dp"
-            android:orientation="vertical"
-            android:layout_toRightOf="@id/first"
-            android:layout_below="@id/titlelay"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp">
-
-        <ImageButton
-            android:id="@+id/idthirdpic"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@mipmap/filmicon"
-            android:background="@color/head"/>
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginLeft="15dp"
-                android:src="@mipmap/sort3"/>
-        </LinearLayout>
-    </RelativeLayout>
-
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:text="综合票房（万）"
+            android:textSize="16sp"/>
+    </LinearLayout>
     <Refresh.CircleRefreshLayout
         app:AniBackColor="@color/head"
         app:AniForeColor="#66a3ec"
         app:CircleSmaller="6"
         android:id="@+id/refresh_layout"
-        android:layout_below="@id/sorthead"
+        android:layout_below="@id/lintop"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_paihang"
@@ -114,4 +62,11 @@
         </android.support.v7.widget.RecyclerView>
     </Refresh.CircleRefreshLayout>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/refresh_layout"
+        android:layout_margin="5dp"
+        android:gravity="center_horizontal"
+        android:id="@+id/tv_message"/>
 </RelativeLayout>

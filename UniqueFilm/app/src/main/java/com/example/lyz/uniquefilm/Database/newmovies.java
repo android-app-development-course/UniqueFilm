@@ -3,10 +3,10 @@ package com.example.lyz.uniquefilm.Database;
 import cn.bmob.v3.BmobObject;
 
 /**
- * Created by lyz on 17-12-28.
+ * Created by lyz on 18-1-4.
  */
 
-public class movies extends BmobObject {
+public class newmovies extends BmobObject {
 
     private int movieid;
     private String doubanid;
@@ -24,10 +24,6 @@ public class movies extends BmobObject {
     private String length;
     private String othername;
     private String description;
-    private String comment;
-    private double uniquerate;
-    private int ratecount;
-
 
     public int getMovieid() {
         return movieid;
@@ -111,27 +107,4 @@ public class movies extends BmobObject {
         this.description = description;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
-    public double getUniquerate() {
-        return uniquerate;
-    }
-
-    public void setUniquerate(double uniquerate) {
-        this.uniquerate = uniquerate;
-    }
-
-    public int getRatecount() {
-        return ratecount;
-    }
-
-    public void setRatecount(int ratecount) {
-        this.ratecount = ratecount;
-    }
 }

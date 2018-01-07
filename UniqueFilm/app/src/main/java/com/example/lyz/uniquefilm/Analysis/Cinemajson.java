@@ -78,7 +78,7 @@ public class Cinemajson extends Thread{
         Gson gson=new Gson();
         CinemaGsonBean cinemagson=gson.fromJson(json,CinemaGsonBean.class);
         ArrayList<CinemaInfo> cinema=cinemagson.result;
-        Log.i("here",cinema.get(0).getCinemaName());
+        //Log.i("here",cinema.get(0).getName());
         return cinema;
     }
 }

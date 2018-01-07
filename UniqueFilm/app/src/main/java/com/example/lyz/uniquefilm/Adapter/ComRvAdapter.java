@@ -58,13 +58,13 @@ public class ComRvAdapter extends RecyclerView.Adapter<ComRvAdapter.ComRvHolder>
         holder.content.setText(list.get(0).getContent());
         String cover[]=list.get(position).getCover().split(" ");
         if(cover[0]!=null){
-            new Httpimage(cover[0],holder.cover1).execute();
+            new Httpimage(cover[0],holder.cover3).execute();
         }
-        if(cover[1]!=null){
+        if(cover.length>1){
             new Httpimage(cover[1],holder.cover2).execute();
         }
-        if(cover[2]!=null){
-            new Httpimage(cover[2],holder.cover3).execute();
+        if(cover.length>2){
+            new Httpimage(cover[2],holder.cover1).execute();
         }
     }
 

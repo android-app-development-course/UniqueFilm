@@ -130,9 +130,9 @@ public class WritingFragment extends Fragment {
                 //}
                 for(int i=0;i<movieslist.size();i++){
                     if(map.get(i)!=null)
-                        movieandintro=movieandintro+movieslist.get(i).getMoviename()+"#"+map.get(i)+"$";
+                        movieandintro=movieandintro+movieslist.get(i).getMoviename()+":"+map.get(i)+"|";
                     else
-                        movieandintro=movieandintro+movieslist.get(i).getMoviename()+"$";
+                        movieandintro=movieandintro+movieslist.get(i).getMoviename()+"|";
                     if(i<3){
                         cover=cover+movieslist.get(i).getCover()+" ";
                     }
@@ -141,6 +141,7 @@ public class WritingFragment extends Fragment {
                 String username=myPreference.getString("username","");
                 BmobQuery<commendmovies> query=new BmobQuery<commendmovies>();
                 commendmovies commend=new commendmovies();
+                commend.setId(0);
                 commend.setTitle(title);
                 commend.setContent(content);
                 commend.setCover(cover);
@@ -150,18 +151,29 @@ public class WritingFragment extends Fragment {
                     @Override
                     public void done(String s, BmobException e) {
                         if(e==null){
-                            Toast.makeText(getActivity(),"发表成功！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"影单发表成功！",Toast.LENGTH_SHORT).show();
+                            updatefragment();
                         }
                         else{
-                            Toast.makeText(getActivity(),"发表失败！",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"发表成功！",Toast.LENGTH_SHORT).show();
+                            //updatefragment();
                         }
                     }
                 });
+
             }
         });
 
         return viewWriting;
 
+    }
+
+    void updatefragment(){
+        WritingTitle.setText("");
+        WritingContent.setText("");
+        movieslist.removeAll(movieslist);
+        mAdapter.setData(movieslist);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
