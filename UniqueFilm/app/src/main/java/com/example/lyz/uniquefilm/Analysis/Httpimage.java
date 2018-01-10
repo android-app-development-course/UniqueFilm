@@ -63,9 +63,6 @@ public class Httpimage extends AsyncTask {
           Log.i("bitmap","false");
         mImageView.setImageBitmap((Bitmap)o);
         if(which){
-            //Palette palette=Palette.from((Bitmap)o).generate();
-            //int defaultcolor=Color.BLUE;
-            //int color=palette.getMutedColor(defaultcolor);
             Palette.from((Bitmap)o).generate(new Palette.PaletteAsyncListener() {
                 @Override
                 public void onGenerated(Palette palette) {

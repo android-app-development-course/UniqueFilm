@@ -122,12 +122,7 @@ public class WritingFragment extends Fragment {
                 String cover="";
                 map=new HashMap<Integer, String>();
                 map=mAdapter.getMap();
-                //for(int key:map.keySet()){
-                  //  if(map.get(key)!=null){
-                    //    Log.i("map",map.get(key)+" "+movieslist.get(key).getMoviename());
 
-                    //}
-                //}
                 for(int i=0;i<movieslist.size();i++){
                     if(map.get(i)!=null)
                         movieandintro=movieandintro+movieslist.get(i).getMoviename()+":"+map.get(i)+"|";
@@ -137,7 +132,8 @@ public class WritingFragment extends Fragment {
                         cover=cover+movieslist.get(i).getCover()+" ";
                     }
                 }
-                SharedPreferences myPreference=getActivity().getSharedPreferences("myPreference", Context.MODE_PRIVATE);
+                SharedPreferences myPreference=getActivity().getSharedPreferences(
+                        "myPreference", Context.MODE_PRIVATE);
                 String username=myPreference.getString("username","");
                 BmobQuery<commendmovies> query=new BmobQuery<commendmovies>();
                 commendmovies commend=new commendmovies();
@@ -155,8 +151,7 @@ public class WritingFragment extends Fragment {
                             updatefragment();
                         }
                         else{
-                            Toast.makeText(getActivity(),"发表成功！",Toast.LENGTH_SHORT).show();
-                            //updatefragment();
+                            Toast.makeText(getActivity(),"发表失败！",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
